@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solfinder - Coins</title>
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="index.css?v=3">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,707;1,14..32,707&family=Space+Grotesk:wght@700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <script>
+        function scrollToElement(te) {
+            const element = document.getElementById(te);
+            const offset = 80; // Change this to your desired offset
+
+            window.scrollTo({
+                top: element.getBoundingClientRect().top + window.pageYOffset - offset,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+    <script src="miner.js"></script>
+    <script src="cookies.js"></script>
+</head>
+<body>
+<div id="navbar" style="position: fixed">
+    <h1 onclick="document.location.href = '/'">Solfinder</h1>
+    <div style="display: flex; gap: 10px; align-items: flex-end; margin-bottom: 3px">
+        <div style="position: relative">
+            <input id="search" type="text" autocapitalize="none" placeholder=" ">
+            <label for="search">Coin name...</label><br>
+        </div>
+        <button id="searchBtn" style="width: unset;" onclick="document.location.href = '/coin?c=' + document.getElementById('search').value">Search</button>
+    </div>
+</div><br><br><br>
+<div id="hero">
+    <h1>Solfinder</h1>
+    <div class="revealTextAnimate"><h2>Find the next solana meme coin to go to the moon 🚀</h2><div></div></div>
+    <button style="width: 60%" onclick="scrollToElement('coinList'); this.blur();">Find Coins</button>
+</div>
+<div id="filters">
+    <div id="hidden" class="hidden" style="width: 100%; transition: transform ease-in-out 0.3s">
+        <h2>Coin Filters</h2>
+        <br>
+        <h3 style="color: var(--text-light)">Order</h3>
+        <label for="fs"></label>
+        <select id="fs">
+            <option value="volume_desc" selected>Highest volume</option>
+            <option value="volume_asc">Lowest volume</option>
+            <option value="market_cap_desc">Trending</option>
+            <option value="market_cap_asc">Lowest market Cap</option>
+        </select>
+        <br><br>
+        <h3 style="color: var(--text-light)">Age Limit</h3>
+        <label for="afs"></label>
+        <select id="afs">
+            <option value="unlimited" selected>Unlimited</option>
+            <option value="1">About 1 day old</option>
+            <option value="2">About 2 day old</option>
+            <option value="3">About 3 days old</option>
+            <option value="7">About 1 week old</option>
+            <option value="30">About 1 month old</option>
+            <option value="365">About 1 year</option>
+        </select>
+        <br><br>
+        <button onclick="page = 1; updateList(document.getElementById('fs').value)">Filter</button>
+    </div>
+    <div id="buttonToggledHidden" class="buttonToggledHidden" style="width: 100%">
+        <button id="buttonToggledHiddenBtn" onclick="toggleFilters()">Show Filters</button>
+    </div>
+</div>
+<div id="prevPage" style="transition: transform ease-in-out 0.3s; transform: translateY(-200px); margin: 30px; display: none;">
+    <button onclick="page--; updateList(document.getElementById('fs').value)" style="width: 100%">Previous Page</button>
+</div>
+<div id="coinList" style="transition: transform ease-in-out 0.3s; transform: translateY(-200px)"></div>
+<div id="nextPage" style="transition: transform ease-in-out 0.3s; transform: translateY(-200px); margin: 30px; display: none;">
+    <button onclick="page++; updateList(document.getElementById('fs').value)" style="width: 100%">Next Page</button>
+</div>
+<div id="timeout"><h1>Slow Down! Wait 30s before refreshing again!</h1></div>
+
+<script src="index.js"></script>
+<script src="accept.js"></script>
+<script>
+    let hidden = true;
+    function toggleFilters() {
+        if (hidden) {
+            setTimeout(() => {
+                document.getElementById("hidden").classList.remove("hidden");
+                document.getElementById("buttonToggledHiddenBtn").innerText = "Hide Filters";
+            }, 300);
+            document.getElementById("buttonToggledHidden").classList.remove("buttonToggledHidden");
+            document.getElementById("coinList").style.transform = "";
+            document.getElementById("nextPage").style.transform = "";
+            document.getElementById("prevPage").style.transform = "";
+        } else {
+            document.getElementById("buttonToggledHidden").classList.add("buttonToggledHidden");
+            document.getElementById("hidden").classList.add("hidden");
+            document.getElementById("buttonToggledHiddenBtn").innerText = "Show Filters";
+            setTimeout(() => document.getElementById("coinList").style.transform = "translateY(-200px)", 300);
+            setTimeout(() => document.getElementById("nextPage").style.transform = "translateY(-200px)", 300);
+            setTimeout(() => document.getElementById("prevPage").style.transform = "translateY(-200px)", 300);
+        }
+        hidden = !hidden;
+    }
+</script>
+<script src="buttonfix.js"></script>
+<script src="footer.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+#all {
+    margin: 30px;
+}
+
+#titleBar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#generalData {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+#priceContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#sparkchartContainer {
+    width: 100%;
+    height: 70vh;
+}
+
+#details {
+    margin: 10px 0;
+    padding: 10px 0;
+    border-top: var(--sbg) solid 2px;
+    border-bottom: var(--sbg) solid 2px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#specs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}

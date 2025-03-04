@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solfinder - Coins</title>
+    <link rel="stylesheet" href="../general.css">
+    <link rel="stylesheet" href="coin.css?v=3">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,707;1,14..32,707&family=Space+Grotesk:wght@700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@3.3.0/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="../miner.js"></script>
+    <script src="../cookies.js"></script>
+</head>
+<body>
+<div id="navbar" style="position: fixed">
+    <h1 onclick="document.location.href = '/'">Solfinder</h1>
+    <div style="display: flex; gap: 10px; align-items: flex-end; margin-bottom: 3px">
+        <div style="position: relative">
+            <input id="search" type="text" autocapitalize="none" placeholder=" ">
+            <label for="search">Coin name...</label><br>
+        </div>
+        <button id="searchBtn" style="width: unset;" onclick="document.location.href = '/coin?c=' + document.getElementById('search').value">Search</button>
+    </div>
+</div><br><br><br>
+<div id="all">
+    <div id="titleBar">
+        <div id="generalData">
+            <img id="icon" alt="coin icon" src=" ">
+            <div>
+                <h1 id="name"></h1>
+                <h3 id="symbol" style="color: var(--text-light);"></h3>
+            </div>
+        </div>
+        <div id="priceContainer">
+            <h1><span style="color: var(--text-light); font-size: 20px; margin-right: 10px">Price</span><span id="cprice"></span></h1>
+            <h1><span style="color: var(--text-light); font-size: 20px; margin-right: 10px">Market cap</span><span id="mcap"></span></h1>
+            <p style="color: var(--text-light)">24h data</p>
+        </div>
+    </div>
+    <div id="details">
+        <div id="safetyContainer">
+            <h2>Coin safety score</h2>
+            <h1 id="safety">Calculating...</h1>
+        </div>
+        <div id="specs">
+            <h2><span style="color: var(--text-light); font-size: 20px; margin-right: 10px">Total Volume</span><span id="volume"></span></h2>
+            <h2><span style="color: var(--text-light); font-size: 20px; margin-right: 10px">Raydium trust score</span><span id="rtrusts"></span></h2>
+        </div>
+    </div>
+    <label for="len"></label>
+    <div style="display: flex; margin: 10px 0; gap: 10px; align-items: center" id="lenContainer">
+        <h4 style="color: var(--text-light); text-wrap: nowrap">Chart data range</h4>
+        <select id="len" onchange="getChart(value)">
+            <option value="1">1 day @ 30min</option>
+            <option value="30" selected>30 days @ 4h</option>
+            <option value="365">365 days @ 4d</option>
+        </select>
+    </div>
+
+    <div id="sparkchartContainer"></div>
+    <div id="buy">
+        <button id="buyButton">Buy or Sell this coin</button>
+    </div>
+</div>
+<div id="timeout"><h1>Slow Down! Wait 30s before refreshing again!</h1></div>
+<script src="coin.js"></script>
+<script src="../accept.js"></script>
+<script src="../footer.js"></script>
+<script src="../buttonfix.js"></script>
+</body>
+</html>

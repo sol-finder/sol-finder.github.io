@@ -1,0 +1,10 @@
+#all {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    line-height: 22px;
+}
+
+b {
+    color: var(--primary)
+}

@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solfinder - Coins</title>
+    <link rel="stylesheet" href="../general.css">
+    <link rel="stylesheet" href="whyMine.css?v=3">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,707;1,14..32,707&family=Space+Grotesk:wght@700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <script src="../miner.js"></script>
+    <script src="../cookies.js"></script>
+</head>
+<body>
+<div id="navbar" style="position: fixed">
+    <h1 onclick="document.location.href = '/'">Solfinder</h1>
+    <div style="display: flex; gap: 10px; align-items: flex-end; margin-bottom: 3px">
+        <div style="position: relative">
+            <input id="search" type="text" autocapitalize="none" placeholder=" ">
+            <label for="search">Coin name...</label><br>
+        </div>
+        <button id="searchBtn" style="width: unset;" onclick="document.location.href = '/coin?c=' + document.getElementById('search').value">Search</button>
+    </div>
+</div><br><br><br>
+<div id="all">
+    <h1>Common questions about our websites web miner</h1><br><br>
+    <h2>Why do we utilize web mining?</h2><br>
+    <p>We utilize web mining to keep this website running <b>without ads</b> and <b>without making it a paid service.</b> We utilize a bit of your computers CPU power to mine cryptocurrency (XMR) to allow us to run this website for free.</p><br><br>
+    <h2>Does this permanently affect my computer?</h2><br>
+    <p><b>No</b> this does not affect your computer in any way! The miner automatically shuts off when you close this tab, or this web browser. <b>It does not download any software onto your computer at all!</b> The web miner runs using pure <a href="https://pl.wikipedia.org/wiki/JavaScript">JavaScript</a>, which does not allow for downloading any software onto your computer directly. <b>The only thing this web miner uses is your CPU (in our testing about 4%), and shuts off whenever you close this tab.</b></p>
+    <br><br>
+    <button class="lightButton" onclick="deleteAllCookies(); document.location.href = '/why-mine'">Change My Settings</button><br>
+    <button onclick="document.location.href = '/'">Go Back</button>
+</div>
+<script src="whyMine.css"></script>
+<script src="../accept.js"></script>
+<script src="../footer.js"></script>
+<script src="../buttonfix.js"></script>
+</body>
+</html>
