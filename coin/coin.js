@@ -65,6 +65,8 @@ function getChart(len) {
         ge("titleBar").style.display = "none";
         ge("lenContainer").style.display = "none";
         ge("buy").style.display = "none";
+        ge("details").style.display = "none";
+        document.querySelector(".footer").style.display = "none";
         throw new Error("too many requests, please wait before refreshing...");
     });
 }
