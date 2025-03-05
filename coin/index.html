@@ -18,7 +18,10 @@
     <script>
         function search() {
             fetch("https://api.coingecko.com/api/v3/search?query=" + document.getElementById("search").value).then(res => res.json()).then(data => {
-                if (data.coins[0]) window.open("/coin/?c=" + data.coins[0].id);
+                if (data.coins[0]) {
+                    window.open("/coin/?c=" + data.coins[0].id);
+                    alert("search");
+                }
                 else document.getElementById("search").value = "no results";
             }).catch(() => {
                 document.getElementById("timeout").style.display = "flex";
