@@ -142,7 +142,7 @@ function renderCoin(coin) {
 
     const price = document.createElement("h3");
     price.style.color = coin.price_change_24h < 0 ? "var(--bad)" : "var(--good)";
-    price.innerText = coin.current_price + "$ " + Math.round(coin.price_change_percentage_24h * 100) / 100 + "%" + (coin.price_change_24h < 0 ? "▼" : "▲");
+    price.innerHTML = coin.current_price + "$ " + Math.round(coin.price_change_percentage_24h * 100) / 100 + "%" + (coin.price_change_24h < 0 ? "▼" : "▲") + " <span style='font-size: 12px; color: var(--text-light)'>24h</span>";
 
     const sparkChartGroup = document.createElement("div");
     sparkChartGroup.className = "sparkChartGroup";
