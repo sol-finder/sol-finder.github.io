@@ -111,6 +111,8 @@ fetch("https://api.coingecko.com/api/v3/coins/" + id + "?tickers=true").then(res
             ge("rtrusts").innerText = ticker.trust_score;
             ge("rtrusts").style.color = ticker.trust_score;
             ge("details").style.display = "";
+            ge("spread").innerText = Math.round(ticker.bid_ask_spread_percentage * 100) + "%";
+            ge("spread").style.color = ticker.bid_ask_spread_percentage < 0.61 ? "var(--good)" : "var(--bad)";
             break;
         }
     }
