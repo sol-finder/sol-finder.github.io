@@ -15,13 +15,29 @@
 </head>
 <body>
 <div id="navbar" style="position: fixed">
-    <h1 onclick="document.location.href = '/'">Solfinder</h1>
+    <script>
+        function search() {
+            fetch("https://api.coingecko.com/api/v3/search?query=" + document.getElementById("search").value).then(res => res.json()).then(data => {
+                if (data.coins[0]) window.open("/coin/?c=" + data.coins[0].id);
+                else document.getElementById("search").value = "no results";
+            }).catch(() => {
+                document.getElementById("timeout").style.display = "flex";
+                ge("titleBar").style.display = "none";
+                ge("lenContainer").style.display = "none";
+                ge("buy").style.display = "none";
+                ge("details").style.display = "none";
+                document.querySelector(".footer").style.display = "none";
+                throw new Error("too many requests, please wait before refreshing...");
+            });
+        }
+    </script>
+    <h1 onclick="window.open('/')">Solfinder</h1>
     <div style="display: flex; gap: 10px; align-items: flex-end; margin-bottom: 3px">
         <div style="position: relative">
             <input id="search" type="text" autocapitalize="none" placeholder=" ">
             <label for="search">Coin name...</label><br>
         </div>
-        <button id="searchBtn" style="width: unset;" onclick="document.location.href = '/coin?c=' + document.getElementById('search').value">Search</button>
+        <button id="searchBtn" style="width: unset;" onclick="search()">Search</button>
     </div>
 </div><br><br><br>
 <div id="all">
@@ -39,7 +55,7 @@
             <p style="color: var(--text-light)">24h data</p>
         </div>
     </div>
-    <div id="details">
+    <div id="details" style="display: none">
         <div id="safetyContainer">
             <h2>Coin safety score</h2>
             <h1 id="safety">Calculating...</h1>
@@ -52,18 +68,27 @@
     <label for="len"></label>
     <div style="display: flex; margin: 10px 0; gap: 10px; align-items: center" id="lenContainer">
         <h4 style="color: var(--text-light); text-wrap: nowrap">Chart data range</h4>
-        <select id="len" onchange="getChart(value)">
+        <select id="len" onchange="getChart(value); document.getElementById('showChartBtn').style.display = 'none'">
             <option value="1">1 day @ 30min</option>
             <option value="30" selected>30 days @ 4h</option>
             <option value="365">365 days @ 4d</option>
         </select>
     </div>
-
-    <div id="sparkchartContainer"></div>
+    <button id="showChartBtn" onclick="getChart(30); style.display = 'none'; document.getElementById('sparkchartContainer').style.display = ''">Show Chart</button>
+    <br>
+    <div id="sparkchartContainer" style="display: none"></div>
+    <br>
     <div id="buy">
-        <button id="buyButton">Buy or Sell This Coin</button>
-        <br>
+        <button onclick="document.getElementById('warnTrade').style.display = ''" id="buyButton">Buy</button>
+        <button onclick="document.getElementById('warnTrade').style.display = ''" class="badButton" id="sellButton">Sell</button>
+    </div>
+    <div id="warnTrade" style="display: none;">
+        <h2>Warning</h2>
+        <br><br>
         <p style="color: var(--text-light)">We do not bare any responsibility for any losses you might incur while trading. Trading is inherently risky. No data on this website should be taken as financial advice. All the data on this website may not be accurate, and we do not take responsibility for any discrepancies or errors.</p>
+        <br>
+        <button id="openTrade">Continue Anyway</button>
+        <button class="badButton" onclick="document.getElementById('warnTrade').style.display = 'none'">Go Back</button>
     </div>
 </div>
 <div id="timeout"><h1>Slow Down! Wait 30s before refreshing again!</h1></div>

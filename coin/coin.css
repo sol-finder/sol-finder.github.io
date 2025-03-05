@@ -52,3 +52,23 @@
     flex-direction: column;
     align-items: flex-end;
 }
+
+#buy {
+    display: flex;
+    gap: 30px;
+}
+
+#warnTrade {
+    z-index: 1000;
+    position: fixed;
+    left: 0;
+    top: 50px;
+    width: calc(100vw - 60px);
+    height: calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background: var(--bg);
+    padding: 30px;
+}

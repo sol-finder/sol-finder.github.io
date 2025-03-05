@@ -14,13 +14,21 @@
 </head>
 <body>
 <div id="navbar" style="position: fixed">
-    <h1 onclick="document.location.href = '/'">Solfinder</h1>
+    <script>
+        function search() {
+            fetch("https://api.coingecko.com/api/v3/search?query=" + document.getElementById("search").value).then(res => res.json()).then(data => {
+                if (data.coins[0]) window.open("/coin/?c=" + data.coins[0].id);
+                else document.getElementById("search").value = "no results";
+            });
+        }
+    </script>
+    <h1 onclick="window.open('/')">Solfinder</h1>
     <div style="display: flex; gap: 10px; align-items: flex-end; margin-bottom: 3px">
         <div style="position: relative">
             <input id="search" type="text" autocapitalize="none" placeholder=" ">
             <label for="search">Coin name...</label><br>
         </div>
-        <button id="searchBtn" style="width: unset;" onclick="document.location.href = '/coin?c=' + document.getElementById('search').value">Search</button>
+        <button id="searchBtn" style="width: unset;" onclick="search()">Search</button>
     </div>
 </div><br><br><br>
 <div id="all">

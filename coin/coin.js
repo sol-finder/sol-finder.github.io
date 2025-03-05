@@ -98,7 +98,10 @@ fetch("https://api.coingecko.com/api/v3/coins/" + id + "?tickers=true").then(res
     ge("mcap").innerText = data.market_data.market_cap.usd + "$" + (data.market_data.price_change_24h > 0 ? "▲" : "▼");
     ge("mcap").style.color = data.market_data.price_change_24h > 0 ? "var(--good)" : "var(--bad)";
 
-    ge("buyButton").onclick = () => document.location.href = "https://www.coingecko.com/en/coins/" + id;
+    ge("openTrade").onclick = () => {
+        window.open("https://www.coingecko.com/en/coins/" + id);
+        document.getElementById("warnTrade").style.display = 'none';
+    }
 
     for (const ticker of data.tickers) {
         if (ticker.market.name === "Raydium") {
@@ -107,11 +110,10 @@ fetch("https://api.coingecko.com/api/v3/coins/" + id + "?tickers=true").then(res
             ge("volume").style.color = data.market_data.price_change_24h > 0 ? "var(--good)" : "var(--bad)";
             ge("rtrusts").innerText = ticker.trust_score;
             ge("rtrusts").style.color = ticker.trust_score;
+            ge("details").style.display = "";
             break;
         }
     }
-
-    getChart(30);
 }).catch(() => {
     document.getElementById("timeout").style.display = "flex";
     ge("titleBar").style.display = "none";
