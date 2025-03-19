@@ -104,7 +104,7 @@ function renderCoin(coin) {
 
     const coinElement = document.createElement("div");
     coinElement.className = "coinItem";
-    coinElement.onclick = () => document.location.href = "/coin?c=" + coin.id;
+    coinElement.onclick = () => window.open("/coin?c=" + coin.id);
 
     // coinName section
     const coinName = document.createElement("div");
